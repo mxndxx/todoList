@@ -1,0 +1,49 @@
+.gnb {
+    height: 60px;
+    background-color: white;
+    padding: 0px 250px 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.checkList {
+    width: 580px;
+    height: 50px;
+    background-color: #FFFFFF;
+    /* padding: 0px 20px 0px 20px; */
+    padding-left: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 30px; 
+    border: solid black 2px;
+    position: relative;
+    /* background-image: url('/ic/chDefault.svg');
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    box-shadow: 4px 4px black; */
+}
+/* .checkList {
+    width: 580px;
+    height: 50px;
+    background-color: #FFFFFF;
+    padding: 0px 100px 0px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    border: solid black 2px;
+    background-image: url('/ic/chDefault.svg');
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    /* box-shadow: 4px 4px black;
+} */
+
+  .search {
+    width: 1000px;
+    height: 56px;
+    padding: 0px 20px 0px 20px;
+    background-image: url('/img/search.svg');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    /* border-style: none; */
+
+  }

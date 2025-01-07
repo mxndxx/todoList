@@ -12,7 +12,14 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-    },
+
+      padding: {
+        '250px': '250px',
+      },
+      margin: {
+        '10px': '10px',
+      }
+    }
   },
   plugins: [],
 } satisfies Config;
