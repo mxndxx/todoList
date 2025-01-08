@@ -31,13 +31,17 @@ import Link from "next/link";
 
 export default async function Home() {
   // const router = useRouter();
-  let todoArray;
+  let todoArray = [];
+  let doneArray = [];
   const response = await fetch("https://assignment-todolist-api.vercel.app/api/mandoo/items");
   if (response.ok) {
     const responseData = await response.json();
     console.log("responseData ::", responseData);
-    todoArray = responseData;
-  } else {
+
+    responseData.map((item) => {
+      return item.isCompleted ? doneArray.push(item) : todoArray.push(item)
+    })
+    } else {
     throw new Error("Data fetching error");
   }
 
@@ -51,7 +55,7 @@ export default async function Home() {
         </Link>
       </div>
       <Search/>
-      <CheckList todoList={todoArray}></CheckList>
+      <CheckList todoList={todoArray} doneList={doneArray}></CheckList>
     </div>
   
   );

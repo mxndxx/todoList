@@ -33,6 +33,7 @@
     border-radius: 30px; 
     border: solid black 2px;
     position: relative;
+    text-decoration-line: line-through;
     /* background-image: url('/ic/chDefault.svg');
     background-repeat: no-repeat;
     background-position: 10px center;
