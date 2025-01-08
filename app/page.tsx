@@ -47,13 +47,6 @@ export default async function Home() {
 
   return (
     <div>
-      <div className={styles.gnb}>
-        
-        {/* <Image src="/img/logo.svg" alt="로고" width={150} height={40} onClick={() => router.push('/')}/> */}
-        <Link href="/">
-          <Image src="/img/logo.svg" alt="로고" width={150} height={40} />
-        </Link>
-      </div>
       <Search/>
       <CheckList todoList={todoArray} doneList={doneArray}></CheckList>
     </div>
