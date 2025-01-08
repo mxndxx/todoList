@@ -22,6 +22,22 @@
     background-position: 10px center;
     box-shadow: 4px 4px black; */
 }
+.doneList {
+    width: 580px;
+    height: 50px;
+    background-color: #EDE9FE;
+    /* padding: 0px 20px 0px 20px; */
+    padding-left: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 30px; 
+    border: solid black 2px;
+    position: relative;
+    /* background-image: url('/ic/chDefault.svg');
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    box-shadow: 4px 4px black; */
+}
 /* .checkList {
     width: 580px;
     height: 50px;

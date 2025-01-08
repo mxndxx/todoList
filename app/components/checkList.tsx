@@ -53,9 +53,9 @@ export default function CheckList(props: any) {
 					<Image src="/img/done.svg" alt="todo" width={100} height={36} />
 					{todoList.map((item)=> (
 						<Form action="/done" className="flex flex-row justify-between py-1.5">
-							<input className={styles.checkList} id={item.id} value={item.name} readOnly />
+							<input className={styles.doneList} id={item.id} value={item.name} readOnly />
 							<button type="submit" className="m-[10px] absolute">
-								<Image src="/ic/chDefault.svg" alt="todo" width={30} height={30} />
+								<Image src="/ic/chFrame.svg" alt="todo" width={30} height={30} />
 							</button>
 						</Form>
 					))}
