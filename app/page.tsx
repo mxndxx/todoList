@@ -1,9 +1,11 @@
 
 import styles from './css/todo.module.css'
-import Image from 'next/image';
+import Image from 'next/image'
 import Form from 'next/form'
-import Search from './components/search';
-import CheckList from './components/checkList';
+import Search from './components/search'
+import CheckList from './components/checkList'
+import Link from "next/link";
+// import { useRouter } from 'next/navigation'
 // async function getData() {
 // 	const response = await fetch('https://assignment-todolist-api.vercel.app/api ');
     
@@ -28,7 +30,7 @@ import CheckList from './components/checkList';
 // };
 
 export default async function Home() {
-
+  // const router = useRouter();
   let todoArray;
   const response = await fetch("https://assignment-todolist-api.vercel.app/api/mandoo/items");
   if (response.ok) {
@@ -42,7 +44,11 @@ export default async function Home() {
   return (
     <div>
       <div className={styles.gnb}>
-        <Image src="/img/logo.svg" alt="로고" width={150} height={40} />
+        
+        {/* <Image src="/img/logo.svg" alt="로고" width={150} height={40} onClick={() => router.push('/')}/> */}
+        <Link href="/">
+          <Image src="/img/logo.svg" alt="로고" width={150} height={40} />
+        </Link>
       </div>
       <Search/>
       <CheckList todoList={todoArray}></CheckList>
