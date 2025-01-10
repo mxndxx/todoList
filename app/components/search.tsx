@@ -1,14 +1,33 @@
 'use client';
-import styles from '../css/todo.module.css'
+import styles from '../css/todo.module.css';
 import Image from 'next/image';
-import Form from 'next/form'
-import React, { useRef } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default function Search() {
-  const inputValue = useRef(null);
+interface SearchProps {
+  isEmpty: boolean;
+}
 
-  async function create() {
-    const data = inputValue.current.value;
+export default function Search({ isEmpty }: SearchProps) {
+  const [inputValue, setInputValue] = useState<string>('');  // 상태값의 타입을 string으로 설정
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // 중복 제출 방지 상태
+  const router = useRouter();
+
+  // activeEnter 함수의 이벤트 매개변수 타입을 KeyboardEvent로 지정
+  const activeEnter = (e: KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === "Enter" && !isSubmitting) {
+      setIsSubmitting(true);
+      create();
+    }
+  };
+
+  // 새로운 할 일 항목을 추가하는 함수
+  const create = async (): Promise<void> => {
+    if (!inputValue.trim()) {
+      alert('할 일을 입력해주세요!');
+      setIsSubmitting(false);  // 입력값이 없으면 제출 중 상태 해제
+      return;
+    }
     try {
       const response = await fetch("https://assignment-todolist-api.vercel.app/api/mandoo/items", {
         method: "POST",
@@ -16,25 +35,55 @@ export default function Search() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          "name": data,
+          "name": inputValue,
         }),
       });
 
-      const result = await response.json();
-      console.log("성공:", result);
+      if (response.ok) {
+        const result = await response.json();
+        console.log("성공:", result);
+        router.refresh(); // 새로고침
+        setInputValue(''); // 입력 필드 초기화
+        setIsSubmitting(false); // 제출 완료 후 상태 해제
+      } else {
+        console.error("아이템 추가 실패:", response.statusText);
+        setIsSubmitting(false); // 실패한 경우에도 제출 중 상태 해제
+      }
     } catch (error) {
-      console.error("실패:", error);
+      console.error("API 요청 중 에러 발생:", error);
+      setIsSubmitting(false); // 에러 발생 시 상태 해제
     }
-  }
+  };
+
+  // 버튼 스타일 클래스명 설정
+  const buttonClass = isEmpty 
+    ? "ml-[10px] w-[168px] h-[56px] bg-[#7C3AED] border-2 border-r-8 border-b-8 border-black rounded-full text-center text-white" 
+    : "ml-[10px] w-[168px] h-[56px] bg-[#E2E8F0] border-2 border-r-8 border-b-8 border-black rounded-full text-center";
 
   return (
-    <div className="justify-items-center py-4">
-      <Form action="/" className="flex flex-row justify-between">
-        <input className={styles.search} ref={inputValue} name="memo" placeholder="할 일을 입력해주세요."/>
-        <button type="button" className="ml-2" onClick={create}>
-          <Image src="/btn/plusbtn.svg" alt="추가하기" width={150} height={56} /> 
+    <div className="flex justify-center py-4 px-[100px]">
+      <div className="flex flex-row">
+        <input
+          className={styles.search}
+          value={inputValue} // 상태값을 input의 value로 설정
+          onChange={(e) => setInputValue(e.target.value)} // 상태값 업데이트
+          onKeyDown={(e) => activeEnter(e)} // Enter 키 이벤트 처리
+          name="memo"
+          placeholder="할 일을 입력해주세요."
+        />
+        <button 
+          type="button" 
+          className={buttonClass}
+          onClick={() => { 
+            if (!isSubmitting) {
+              setIsSubmitting(true);
+              create();
+            }
+          }}
+        >
+          + 추가하기
         </button>
-      </Form>
+      </div>
     </div>
   );
 }

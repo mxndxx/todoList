@@ -1,55 +1,41 @@
-
 import styles from './css/todo.module.css'
 import Image from 'next/image'
 import Form from 'next/form'
 import Search from './components/search'
 import CheckList from './components/checkList'
 import Link from "next/link";
-// import { useRouter } from 'next/navigation'
-// async function getData() {
-// 	const response = await fetch('https://assignment-todolist-api.vercel.app/api ');
-    
-//   if (!response.ok) {
-//       console.log("api 확인")
-//  		throw new Error('Failed to fetch data')   
-//     }
-//     return response.json()
-// }
 
-// export default async function Page() {
-// 	const data = await getData()
-    
-//     return <main></main>
-// }
-// const insert = () => {
-//   console.log(true);
-// };
-
-// const insert = () => {
-//   console.log("true");
-// };
+// 타입 정의
+interface TodoItem {
+  id: number;
+  name: string;
+  isCompleted: boolean;
+}
 
 export default async function Home() {
-  // const router = useRouter();
-  let todoArray = [];
-  let doneArray = [];
+  let todoArray: TodoItem[] = [];  // todo 아이템 배열 타입 지정
+  let doneArray: TodoItem[] = [];  // done 아이템 배열 타입 지정
+  let isEmpty: boolean = false;
+
+
   const response = await fetch("https://assignment-todolist-api.vercel.app/api/mandoo/items");
+
   if (response.ok) {
-    const responseData = await response.json();
-    console.log("responseData ::", responseData);
+    const responseData: TodoItem[] = await response.json();  // API에서 받은 데이터 타입 지정
+    console.log("responseData ::", responseData.length);
 
     responseData.map((item) => {
       return item.isCompleted ? doneArray.push(item) : todoArray.push(item)
     })
-    } else {
+    isEmpty = responseData.length === 0; // 데이터가 없으면 true
+  } else {
     throw new Error("Data fetching error");
   }
 
   return (
     <div>
-      <Search/>
+      <Search isEmpty={isEmpty}/>
       <CheckList todoList={todoArray} doneList={doneArray}></CheckList>
     </div>
-  
   );
 }
