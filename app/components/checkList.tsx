@@ -30,7 +30,7 @@ const ListItem = ({
   isCompleted: boolean;
 }) => (
   <div className={'flex justify-between py-1.5'}>
-    <button type="button" onClick={() => onDetailClick(item)} className={`w-[580px] h-[50px] border-2 border-black rounded-full ${isCompleted ? 'bg-[#EDE9FE] line-through': 'bg-white'}`}>
+    <button type="button" onClick={() => onDetailClick(item)} className={`w-full h-[50px] border-2 border-black rounded-full ${isCompleted ? 'bg-[#EDE9FE] line-through': 'bg-white'}`}>
       {item.name}
     </button>
     <button type="button" className="m-[10px] absolute" onClick={() => onToggleComplete(item)}>
@@ -41,10 +41,18 @@ const ListItem = ({
 
 const EmptyState = ({ imageSrc, text }: { imageSrc: string; text: string }) => (
   <div className="flex flex-col justify-center items-center text-[#94A3B8]">
-    <Image src={imageSrc} alt="empty" width={240} height={240} />
+    <div className="w-[120px] h-[120px] md:w-[240px] md:h-[240px] relative">
+      <Image
+        src={imageSrc}
+        alt="empty"
+        layout="fill" // 부모의 크기에 맞게 자동으로 조정
+        objectFit="contain" // 비율 유지하며 크기 조정
+      />
+    </div>
     <p>{text}</p>
   </div>
 );
+
 
 export default function CheckList({ todoList, doneList }: CheckListProps) {
   const router = useRouter();
@@ -96,9 +104,9 @@ export default function CheckList({ todoList, doneList }: CheckListProps) {
   };
 
   return (
-    <div className="flex flex-row justify-center px-[100px]">
+    <div className="flex flex-col xl:flex-row justify-center px-[100px]">
       {/* 할 일 리스트 */}
-      <div className="w-[580px]">
+      <div className="w-[full] xl:w-[580px]">
         <Image src="/img/todo.svg" alt="todo" width={100} height={36} />
         {todoList.length > 0 ? (
           todoList.map((item) => (
@@ -121,7 +129,7 @@ export default function CheckList({ todoList, doneList }: CheckListProps) {
       </div>
 
       {/* 완료한 일 리스트 */}
-      <div className="w-[580px] pl-[10px]">
+      <div className="w-[full] xl:w-[580px] xl:pl-[10px] pt-[40px] xl:pt-0">
         <Image src="/img/done.svg" alt="done" width={100} height={36} />
         {doneList.length > 0 ? (
           doneList.map((item) => (

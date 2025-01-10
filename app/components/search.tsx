@@ -59,10 +59,9 @@ export default function Search({ isEmpty }: SearchProps) {
     : "ml-[10px] w-[168px] h-[56px] bg-[#E2E8F0] border-2 border-r-8 border-b-8 border-black rounded-full text-center";
 
   return (
-    <div className="flex justify-center py-4 px-[100px]">
-      <div className="flex flex-row">
+    <div className="flex flex-row justify-between py-4 px-[100px]">
         <input
-          className="w-[1000px] h-[56px] px-[20px] bg-[#F1F5F9] border-2 border-r-8 border-b-8 border-black rounded-full"
+          className="w-full h-[56px] px-[20px] bg-[#F1F5F9] border-2 border-r-8 border-b-8 border-black rounded-full"
           value={inputValue} // 상태값을 input의 value로 설정
           onChange={(e) => setInputValue(e.target.value)} // 상태값 업데이트
           onKeyDown={(e) => activeEnter(e)} // Enter 키 이벤트 처리
@@ -79,9 +78,11 @@ export default function Search({ isEmpty }: SearchProps) {
             }
           }}
         >
-          + 추가하기
+          {/* 큰 화면*/}
+          <span className="hidden sm:block">+ 추가하기</span>
+          {/* 작은 화면*/}
+          <span className="block sm:hidden">+</span>
         </button>
-      </div>
     </div>
   );
 }

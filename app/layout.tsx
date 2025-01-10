@@ -29,9 +29,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nanumR.className}>
-        <div className="h-[60px] bg-white pl-[250px] flex items-center"> 
+        <div className="h-[60px] bg-white xl:pl-[250px] md:pl-[20px] pl-[20px] flex items-center"> 
           <Link href="/">
-            <Image src="/img/logo.svg" alt="로고" width={150} height={40} />
+            {/* 작은 화면에서는 다른 로고 이미지 */}
+            <Image 
+              src="/img/logo.svg" 
+              alt="로고" 
+              width={150} 
+              height={40} 
+              className="hidden sm:block" // sm 이상에서만 기본 로고
+            />
+            <Image 
+              src="/img/logo_small.svg" 
+              alt="로고" 
+              width={70} 
+              height={40} 
+              className="sm:hidden" // sm 이하에서만 작은 로고
+            />
           </Link>
         </div>
         {children}

@@ -180,9 +180,9 @@ export default function Detail() {
           }
         </div>
 
-        <div className="py-1.5 flex justify-center">
+        <div className="py-1.5 flex justify-center my-[10px]">
           <div className="flex flex-row justify-between">
-            <div className="w-[380px] h-[300px] border-dashed border-2 border-[#CBD5E1] rounded-lg bg-[#F8FAFC] relative">
+            <div className="w-[380px] h-[300px] border-dashed border-2 border-[#CBD5E1] rounded-3xl bg-[#F8FAFC] relative">
               <Image src={imgSrc} alt="Uploaded Image" layout="fill" objectFit="cover" />
               <input
                 type="file"
@@ -200,10 +200,10 @@ export default function Detail() {
               </button>
             </div>
 
-            <div className="w-[600px] h-[300px] rounded-lg relative bg-cover bg-[url('/img/memo.svg')] justify-center">
+            <div className="w-[600px] h-[300px] rounded-3xl relative ml-[20px] bg-cover bg-[url('/img/memo.svg')] justify-center">
               <p className="text-center my-4 text-[#92400E] text-lg font-bold">Memo</p>
               <textarea
-                className="bg-transparent w-full h-[100px] px-4"
+                className="bg-transparent w-full h-[200px] px-4"
                 defaultValue={memoValue}
                 onChange={(e) => setMemoValue(e.target.value)}
               />
