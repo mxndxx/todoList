@@ -22,7 +22,7 @@
 1. 이 저장소를 클론합니다.
 
    ```bash
-   git clone https://github.com/사용자명/프로젝트명.git
+   git clone https://github.com/mxndxx/todoList.git
 
 2. 의존성 설치
 프로젝트 디렉토리로 이동한 후, 필요한 패키지를 설치합니다.
