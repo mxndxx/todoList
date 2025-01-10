@@ -104,9 +104,9 @@ export default function CheckList({ todoList, doneList }: CheckListProps) {
   };
 
   return (
-    <div className="flex flex-col xl:flex-row justify-center px-[100px]">
+    <div className="flex flex-col xl:flex-row justify-center xl:justify-between px-[100px]">
       {/* 할 일 리스트 */}
-      <div className="w-[full] xl:w-[580px]">
+      <div className="w-full xl:w-[580px]">
         <Image src="/img/todo.svg" alt="todo" width={100} height={36} />
         {todoList.length > 0 ? (
           todoList.map((item) => (
@@ -129,7 +129,7 @@ export default function CheckList({ todoList, doneList }: CheckListProps) {
       </div>
 
       {/* 완료한 일 리스트 */}
-      <div className="w-[full] xl:w-[580px] xl:pl-[10px] pt-[40px] xl:pt-0">
+      <div className="w-full xl:w-[580px] pt-[40px] xl:pt-0">
         <Image src="/img/done.svg" alt="done" width={100} height={36} />
         {doneList.length > 0 ? (
           doneList.map((item) => (

@@ -19,6 +19,7 @@ export default {
         '#92400E': '#92400E',
         '#F43F5E': '#F43F5E',
         '#BEF264': '#BEF264',
+        '#0F172A80':'#0F172A80',
       },
 
       padding: {
