@@ -1,5 +1,4 @@
 'use client';
-import styles from '../css/todo.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -21,15 +20,17 @@ const ListItem = ({
   onToggleComplete,
   buttonImage,
   buttonAlt,
+  isCompleted,
 }: {
   item: TodoItem;
   onDetailClick: (item: TodoItem) => void;
   onToggleComplete: (item: TodoItem) => void;
   buttonImage: string;
   buttonAlt: string;
+  isCompleted: boolean;
 }) => (
-  <div className="flex justify-between py-1.5">
-    <button type="button" onClick={() => onDetailClick(item)} className={styles.checkList}>
+  <div className={'flex justify-between py-1.5'}>
+    <button type="button" onClick={() => onDetailClick(item)} className={`w-[580px] h-[50px] border-2 border-black rounded-full ${isCompleted ? 'bg-[#EDE9FE] line-through': 'bg-white'}`}>
       {item.name}
     </button>
     <button type="button" className="m-[10px] absolute" onClick={() => onToggleComplete(item)}>
@@ -108,6 +109,7 @@ export default function CheckList({ todoList, doneList }: CheckListProps) {
               onToggleComplete={clickHandle}
               buttonImage="/ic/chDefault.svg"
               buttonAlt="todo"
+              isCompleted={item.isCompleted}
             />
           ))
         ) : (
@@ -130,6 +132,7 @@ export default function CheckList({ todoList, doneList }: CheckListProps) {
               onToggleComplete={clickHandle}
               buttonImage="/ic/chFrame.svg"
               buttonAlt="done"
+              isCompleted={item.isCompleted}
             />
           ))
         ) : (

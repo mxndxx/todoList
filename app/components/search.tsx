@@ -1,6 +1,4 @@
 'use client';
-import styles from '../css/todo.module.css';
-import Image from 'next/image';
 import React, { useState, KeyboardEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -64,7 +62,7 @@ export default function Search({ isEmpty }: SearchProps) {
     <div className="flex justify-center py-4 px-[100px]">
       <div className="flex flex-row">
         <input
-          className={styles.search}
+          className="w-[1000px] h-[56px] px-[20px] bg-[#F1F5F9] border-2 border-r-8 border-b-8 border-black rounded-full"
           value={inputValue} // 상태값을 input의 value로 설정
           onChange={(e) => setInputValue(e.target.value)} // 상태값 업데이트
           onKeyDown={(e) => activeEnter(e)} // Enter 키 이벤트 처리

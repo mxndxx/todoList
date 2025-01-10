@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import localFont from "next/font/local"
-import styles from './css/todo.module.css'
 import Link from "next/link";
 import Image from 'next/image'
 
@@ -30,8 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nanumR.className}>
-        <div className={styles.gnb}> 
-          {/* <Image src="/img/logo.svg" alt="로고" width={150} height={40} onClick={() => router.push('/')}/> */}
+        <div className="h-[60px] bg-white pl-[250px] flex items-center"> 
           <Link href="/">
             <Image src="/img/logo.svg" alt="로고" width={150} height={40} />
           </Link>

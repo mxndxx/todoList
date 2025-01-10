@@ -212,6 +212,15 @@ export default function Detail() {
         </div>
 
         <div className="flex justify-end">
+        {isCompleted ?
+          <button
+            type="submit"
+            className="w-[168px] h-[56px] m-2 bg-[#BEF264] border-2 border-black rounded-full text-center"
+            onClick={() => modClick(detailData?.id || '')}
+          >
+            수정하기
+          </button>
+          :
           <button
             type="submit"
             className="w-[168px] h-[56px] m-2 bg-[#E2E8F0] border-2 border-black rounded-full text-center"
@@ -219,6 +228,7 @@ export default function Detail() {
           >
             수정하기
           </button>
+        }
           <button
             type="submit"
             className="w-[168px] h-[56px] m-2 bg-[#F43F5E] border-2 border-black rounded-full text-center text-white"

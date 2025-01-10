@@ -1,9 +1,5 @@
-import styles from './css/todo.module.css'
-import Image from 'next/image'
-import Form from 'next/form'
 import Search from './components/search'
 import CheckList from './components/checkList'
-import Link from "next/link";
 
 // 타입 정의
 interface TodoItem {
