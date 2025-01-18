@@ -9,8 +9,8 @@ interface TodoItem {
 }
 
 export default async function Home() {
-  let todoArray: TodoItem[] = [];  // todo 아이템 배열 타입 지정
-  let doneArray: TodoItem[] = [];  // done 아이템 배열 타입 지정
+  const todoArray: TodoItem[] = [];  // todo 아이템 배열 타입 지정
+  const doneArray: TodoItem[] = [];  // done 아이템 배열 타입 지정
   let isEmpty: boolean = false;
 
 

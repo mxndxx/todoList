@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import localFont from "next/font/local"
 import Link from "next/link";
@@ -9,12 +8,6 @@ const nanumR = localFont({
   src: "./fonts/NanumSquareR.ttf",
   display: "swap",
 });
-const nanumB = localFont({
-  src: "./fonts/NanumSquareB.ttf",
-  display: "swap",
-});
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: '투두리스트',
