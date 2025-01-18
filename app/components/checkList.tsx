@@ -58,7 +58,7 @@ export default function CheckList({ todoList, doneList }: CheckListProps) {
   const router = useRouter();
 
   // 공통된 fetch 요청을 처리하는 함수
-  const handleFetch = async (url: string, method: string, body: any = null) => {
+  const handleFetch = async (url: string, method: string, body: object | null = null) => {
     try {
       const response = await fetch(url, {
         method,
