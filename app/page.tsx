@@ -14,11 +14,14 @@ export default async function Home() {
   let isEmpty: boolean = false;
 
 
-  const response = await fetch("https://assignment-todolist-api.vercel.app/api/mandoo/items");
+  const response = await fetch("https://assignment-todolist-api.vercel.app/api/mandoo/items", {
+    headers: {
+      'Cache-Control': 'no-store', // 캐시를 사용하지 않도록 설정
+    },
+  });
 
   if (response.ok) {
     const responseData: TodoItem[] = await response.json();  // API에서 받은 데이터 타입 지정
-    console.log("responseData ::", responseData.length);
 
     responseData.map((item) => {
       return item.isCompleted ? doneArray.push(item) : todoArray.push(item)
