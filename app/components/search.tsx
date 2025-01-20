@@ -2,11 +2,7 @@
 import React, { useState, KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 
-interface SearchProps {
-  isEmpty: boolean;
-}
-
-export default function Search({ isEmpty }: SearchProps) {
+export default function Search() {
   const [inputValue, setInputValue] = useState<string>(""); // 상태값의 타입을 string으로 설정
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // 중복 제출 방지 상태
   const router = useRouter();
@@ -55,11 +51,6 @@ export default function Search({ isEmpty }: SearchProps) {
       setIsSubmitting(false); // 에러 발생 시 상태 해제
     }
   };
-
-  // 버튼 스타일 클래스명 설정
-  // const buttonClass = isEmpty
-  //   ? "ml-[10px] w-[168px] h-[56px] bg-[#7C3AED] border-2 border-r-8 border-b-8 border-black rounded-full text-center text-white"
-  //   : "ml-[10px] w-[168px] h-[56px] bg-[#E2E8F0] border-2 border-r-8 border-b-8 border-black rounded-full text-center";
 
   return (
     <div className="flex flex-row justify-between p-4 container mx-auto sm:px-[100px]">
