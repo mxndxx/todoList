@@ -15,6 +15,7 @@ export default async function Home() {
 
 
   const response = await fetch("https://assignment-todolist-api.vercel.app/api/mandoo/items", {
+    method: 'GET',
     headers: {
       'Cache-Control': 'no-store', // 캐시를 사용하지 않도록 설정
     },
