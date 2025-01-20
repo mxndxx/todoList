@@ -1,7 +1,7 @@
-'use client';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+"use client";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 interface TodoItem {
   id: number;
@@ -29,11 +29,21 @@ const ListItem = ({
   buttonAlt: string;
   isCompleted: boolean;
 }) => (
-  <div className={'flex justify-between py-1.5'}>
-    <button type="button" onClick={() => onDetailClick(item)} className={`w-full h-[50px] border-2 border-black rounded-full ${isCompleted ? 'bg-[#EDE9FE] line-through': 'bg-white'}`}>
+  <div className={"flex justify-between py-1.5"}>
+    <button
+      type="button"
+      onClick={() => onDetailClick(item)}
+      className={`w-full h-[50px] border-2 border-black rounded-full ${
+        isCompleted ? "bg-[#EDE9FE] line-through" : "bg-white"
+      }`}
+    >
       {item.name}
     </button>
-    <button type="button" className="m-[10px] absolute" onClick={() => onToggleComplete(item)}>
+    <button
+      type="button"
+      className="m-[10px] absolute"
+      onClick={() => onToggleComplete(item)}
+    >
       <Image src={buttonImage} alt={buttonAlt} width={30} height={30} />
     </button>
   </div>
@@ -53,21 +63,24 @@ const EmptyState = ({ imageSrc, text }: { imageSrc: string; text: string }) => (
   </div>
 );
 
-
 export default function CheckList({ todoList, doneList }: CheckListProps) {
   const router = useRouter();
 
   // 공통된 fetch 요청을 처리하는 함수
-  const handleFetch = async (url: string, method: string, body: object | null = null) => {
+  const handleFetch = async (
+    url: string,
+    method: string,
+    body: object | null = null
+  ) => {
     try {
       const response = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
         body: body ? JSON.stringify(body) : null,
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch data');
+        throw new Error("Failed to fetch data");
       }
 
       return await response.json();
@@ -81,7 +94,7 @@ export default function CheckList({ todoList, doneList }: CheckListProps) {
   const clickHandle = async (data: TodoItem) => {
     const updatedItem = await handleFetch(
       `https://assignment-todolist-api.vercel.app/api/mandoo/items/${data.id}`,
-      'PATCH',
+      "PATCH",
       { isCompleted: !data.isCompleted }
     );
 
@@ -94,19 +107,19 @@ export default function CheckList({ todoList, doneList }: CheckListProps) {
   const clickDetail = async (item: TodoItem) => {
     const detailData = await handleFetch(
       `https://assignment-todolist-api.vercel.app/api/mandoo/items/${item.id}`,
-      'GET'
+      "GET"
     );
 
     if (detailData) {
-      sessionStorage.setItem('detailData', JSON.stringify(detailData));
-      router.push('/detail');
+      sessionStorage.setItem("detailData", JSON.stringify(detailData));
+      router.push("/detail");
     }
   };
 
   return (
-    <div className="flex flex-col xl:flex-row justify-center xl:justify-between px-[100px]">
+    <div className="flex flex-col lg:flex-row justify-center lg:justify-between p-4 container mx-auto sm:px-[100px] lg:gap-x-4">
       {/* 할 일 리스트 */}
-      <div className="w-full xl:w-[580px]">
+      <div className="w-full lg:w-[580px]">
         <Image src="/img/todo.svg" alt="todo" width={100} height={36} />
         {todoList.length > 0 ? (
           todoList.map((item) => (
@@ -129,7 +142,7 @@ export default function CheckList({ todoList, doneList }: CheckListProps) {
       </div>
 
       {/* 완료한 일 리스트 */}
-      <div className="w-full xl:w-[580px] pt-[40px] xl:pt-0">
+      <div className="w-full lg:w-[580px] pt-[40px] lg:pt-0">
         <Image src="/img/done.svg" alt="done" width={100} height={36} />
         {doneList.length > 0 ? (
           doneList.map((item) => (
