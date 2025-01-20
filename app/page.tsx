@@ -14,7 +14,7 @@ export default async function Home() {
   let isEmpty: boolean = false;
 
 
-  const response = await fetch("https://assignment-todolist-api.vercel.app/api/mandoo/items", {
+  const response = await fetch(`https://assignment-todolist-api.vercel.app/api/mandoo/items?_=${Date.now()}`, {
     method: 'GET',
     headers: {
       'Cache-Control': 'no-store', // 캐시를 사용하지 않도록 설정
