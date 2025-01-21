@@ -12,6 +12,13 @@ interface DetailData {
   imageUrl?: string;
 }
 
+interface RequestData {
+  name?: string | null;
+  memo?: string | null;
+  imageUrl?: string | null;
+  isCompleted?: boolean;
+}
+
 export default function Detail() {
   const [detailData, setDetailData] = useState<DetailData | null>(null);
   const [nameValue, setNameValue] = useState<string>("");
@@ -68,6 +75,13 @@ export default function Detail() {
 
   const updateItem = async (base64Image: string) => {
     try {
+      const requestData: RequestData = {
+        ...(nameValue && { name: nameValue }), // nameValue가 존재하면 포함
+        ...(memoValue && { memo: memoValue }), // memoValue가 존재하면 포함
+        ...(base64Image && { imageUrl: base64Image }), // base64Image가 존재하면 포함
+        ...(isCompleted !== null && { isCompleted }), // isCompleted가 null이 아니면 포함
+      };
+
       const response = await fetch(
         `https://assignment-todolist-api.vercel.app/api/mandoo/items/${detailData?.id}`,
         {
@@ -75,12 +89,7 @@ export default function Detail() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            name: nameValue,
-            memo: memoValue,
-            imageUrl: base64Image,
-            isCompleted,
-          }),
+          body: JSON.stringify(requestData),
         }
       );
 
